@@ -6,7 +6,7 @@ function isInvestmentSpam(text) {
   const celebrityKeywords = ['前澤友作', '高橋洋一', '堀江貴文', 'ホリエモン', '孫正義', '森永卓郎', 'テスタ', '成田悠輔', '落合陽一'];
   const moneyPattern = /\d{2,4}万円/;
   const mentionPattern = /@\w{3,}/;
-  const financeKeywords = ['急騰', '的中', '推奨', '観察して', '数カ月見て', '利益', '稼ぎ', '儲け'];
+  const financeKeywords = ['急騰', '的中', '推奨', '観察して', '数カ月見て', '利益', '稼ぎ', '儲け', '投資', '収益'];
   const gratitudeKeywords = ['感謝しています', 'ありがとうございます', '感謝しかない', '救われました'];
   const suspiciousEmojis = ['🎈', '🔥', '🧡', '💚', '📈', '🎉'];
 
