@@ -13,6 +13,8 @@ function isInvestmentSpam(text) {
     "テスタ",
     "成田悠輔",
     "落合陽一",
+    "兄",
+    "姉",
   ];
   const moneyPattern = /\d{2,4}万円/;
   const mentionPattern = /@\w{3,}/;
@@ -41,6 +43,7 @@ function isInvestmentSpam(text) {
     "一か八か",
     "資本",
     "指数",
+    "ブロガー",
   ];
   const gratitudeKeywords = [
     "感謝",
@@ -80,14 +83,14 @@ function isInvestmentSpam(text) {
   // スコア計算
   matchScore += celebrityCount * 2;
   matchScore += moneyPattern.test(text) ? 1 : 0;
-  matchScore += mentionPattern.test(text) ? 2 : 0;
+  matchScore += mentionPattern.test(text) ? 4 : 0;
   matchScore += financeCount;
   matchScore += gratitudeCount;
   matchScore += emojiCount;
 
   console.log(matchScore);
 
-  return matchScore >= 6;
+  return matchScore >= 7;
 }
 
 // === リプライ検出・非表示処理 ===
