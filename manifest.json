@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "Twitter Investment Spam Hider",
+  "version": "1.0",
+  "description": "投資スパムリプライを自動で非表示にします。",
+  "permissions": ["scripting"],
+  "host_permissions": ["https://x.com/*"],
+  "content_scripts": [
+    {
+      "matches": ["https://x.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_end"
+    }
+  ]
+}
