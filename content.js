@@ -33,7 +33,7 @@ export function isInvestmentSpam(text) {
     "お金",
     "返済",
     "借金",
-    "金融商品",
+    "金融",
     "金額",
     "余剰金",
     "稼",
@@ -44,10 +44,13 @@ export function isInvestmentSpam(text) {
     "資本",
     "指数",
     "ブロガー",
+    "万円",
+    "儲"
   ];
   const gratitudeKeywords = [
     "感謝",
     "ありがとうございます",
+    "疑心暗鬼",
     "救われました",
     "アドバイス",
     "おすすめ",
@@ -83,7 +86,7 @@ export function isInvestmentSpam(text) {
   // スコア計算
   matchScore += celebrityCount * 2;
   matchScore += moneyPattern.test(text) ? 1 : 0;
-  matchScore += mentionPattern.test(text) ? 4 : 0;
+  matchScore += mentionPattern.test(text) ? 5: 0;
   matchScore += financeCount;
   matchScore += gratitudeCount;
   matchScore += emojiCount;
