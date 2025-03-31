@@ -44,7 +44,8 @@ function isInvestmentSpam(text) {
     "資本",
     "指数",
     "ブロガー",
-    "万円",
+    "円",
+    "万",
     "儲",
     "銘柄",
   ];
@@ -110,7 +111,10 @@ if (typeof window !== "undefined") {
         const tweet = reply.closest('[data-testid="cellInnerDiv"]');
         if (tweet) {
           tweet.style.display = "none";
-          console.log("こちらのコメントをスパム判定し、削除しました\n======\n", text);
+          console.log(
+            "こちらのコメントをスパム判定し、削除しました\n======\n",
+            text
+          );
         }
       }
     });
