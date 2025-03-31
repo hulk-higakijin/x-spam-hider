@@ -92,8 +92,6 @@ function isInvestmentSpam(text) {
   matchScore += gratitudeCount;
   matchScore += emojiCount;
 
-  console.log(matchScore);
-
   return matchScore >= 7;
 }
 
@@ -112,7 +110,7 @@ if (typeof window !== "undefined") {
         const tweet = reply.closest('[data-testid="cellInnerDiv"]');
         if (tweet) {
           tweet.style.display = "none";
-          console.log(text);
+          console.log("こちらのコメントをスパム判定し、削除しました\n======\n", text);
         }
       }
     });
