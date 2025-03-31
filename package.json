@@ -11,5 +11,15 @@
   "description": "",
   "dependencies": {
     "jest": "^29.7.0"
+  },
+  "type": "module",
+  "jest": {
+    "transform": {
+      "^.+\\.js$": "babel-jest"
+    }
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.26.9",
+    "babel-jest": "^29.7.0"
   }
 }

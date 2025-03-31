@@ -2,7 +2,7 @@
 // この例では detector.js の中身を直接コピーして一体化してもOK！
 
 // === スパム判定ロジック ===
-function isInvestmentSpam(text) {
+export function isInvestmentSpam(text) {
   const celebrityKeywords = [
     "前澤友作",
     "高橋洋一",
@@ -93,19 +93,21 @@ function isInvestmentSpam(text) {
   return matchScore >= 7;
 }
 
-// === リプライ検出・非表示処理 ===
-const observer = new MutationObserver(() => {
-  const replies = document.querySelectorAll('[data-testid="tweetText"]');
-  replies.forEach((reply) => {
-    const text = reply.textContent || "";
-    if (isInvestmentSpam(text)) {
-      const tweet = reply.closest('[data-testid="cellInnerDiv"]');
-      if (tweet) {
-        tweet.style.display = "none";
-        console.log(text);
+// ブラウザ環境でのみ実行されるコードを条件分岐
+if (typeof window !== "undefined") {
+  const observer = new MutationObserver(() => {
+    const replies = document.querySelectorAll('[data-testid="tweetText"]');
+    replies.forEach((reply) => {
+      const text = reply.textContent || "";
+      if (isInvestmentSpam(text)) {
+        const tweet = reply.closest('[data-testid="cellInnerDiv"]');
+        if (tweet) {
+          tweet.style.display = "none";
+          console.log(text);
+        }
       }
-    }
+    });
   });
-});
 
-observer.observe(document.body, { childList: true, subtree: true });
+  observer.observe(document.body, { childList: true, subtree: true });
+}
