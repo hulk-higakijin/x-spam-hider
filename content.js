@@ -2,7 +2,7 @@
 // この例では detector.js の中身を直接コピーして一体化してもOK！
 
 // === スパム判定ロジック ===
-export function isInvestmentSpam(text) {
+function isInvestmentSpam(text) {
   const celebrityKeywords = [
     "前澤友作",
     "高橋洋一",
@@ -46,7 +46,7 @@ export function isInvestmentSpam(text) {
     "ブロガー",
     "万円",
     "儲",
-    "銘柄"
+    "銘柄",
   ];
   const gratitudeKeywords = [
     "感謝",
@@ -87,7 +87,7 @@ export function isInvestmentSpam(text) {
   // スコア計算
   matchScore += celebrityCount * 2;
   matchScore += moneyPattern.test(text) ? 1 : 0;
-  matchScore += mentionPattern.test(text) ? 5: 0;
+  matchScore += mentionPattern.test(text) ? 5 : 0;
   matchScore += financeCount;
   matchScore += gratitudeCount;
   matchScore += emojiCount;
@@ -95,6 +95,11 @@ export function isInvestmentSpam(text) {
   console.log(matchScore);
 
   return matchScore >= 7;
+}
+
+// テスト用にエクスポート
+if (typeof module !== "undefined" && module.exports) {
+  module.exports = { isInvestmentSpam };
 }
 
 // ブラウザ環境でのみ実行されるコードを条件分岐
