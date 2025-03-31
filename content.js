@@ -45,7 +45,8 @@ export function isInvestmentSpam(text) {
     "指数",
     "ブロガー",
     "万円",
-    "儲"
+    "儲",
+    "銘柄"
   ];
   const gratitudeKeywords = [
     "感謝",
