@@ -96,9 +96,16 @@ function isInvestmentSpam(text) {
   return matchScore >= 7;
 }
 
+function extractEmojis(text) {
+  const emojiRegex = /([\p{Emoji_Presentation}\uFE0F])/gu;
+  const emojis = text.match(emojiRegex) || [];
+
+  return emojis.join(", ");
+}
+
 // テスト用にエクスポート
 if (typeof module !== "undefined" && module.exports) {
-  module.exports = { isInvestmentSpam };
+  module.exports = { isInvestmentSpam, extractEmojis };
 }
 
 // ブラウザ環境でのみ実行されるコードを条件分岐
