@@ -71,6 +71,8 @@ function isInvestmentSpam(text) {
     "識見",
   ];
 
+  if (!mentionPattern.test(text)) return false; // メンションがない場合はスパムとして判定しない
+
   let matchScore = 0;
 
   // キーワードごとにカウント

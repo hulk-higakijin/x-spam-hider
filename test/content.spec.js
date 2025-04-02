@@ -161,19 +161,32 @@ describe("isInvestmentSpam", () => {
   test("有名人の名前が複数含まれる場合のスコア計算", () => {
     const celebrityText =
       "堀江貴文さんと前澤友作さんの対談がとても参考になりました";
-    expect(isInvestmentSpam(celebrityText)).toBe(false); // スコア4（2 * 2）のみなのでfalse
+    expect(isInvestmentSpam(celebrityText)).toBe(false);
   });
 
   test("複合的なスパムパターン", () => {
     const complexSpamText =
       "@money_expert 堀江貴文さんの投資アドバイスで30万円稼げました！感謝です🔥";
-    expect(isInvestmentSpam(complexSpamText)).toBe(true); // スコア9以上になるのでtrue
+    expect(isInvestmentSpam(complexSpamText)).toBe(true);
   });
 
   test("金額パターンのテスト", () => {
     const moneyText = "今月は20万円の収入がありました";
-    expect(isInvestmentSpam(moneyText)).toBe(false); // スコア2（金額1 + 金融1）のみなのでfalse
+    expect(isInvestmentSpam(moneyText)).toBe(false);
   });
+  
+  test("絵文字を多用する", () => {
+    const text = `将来のために今からやること
+      ✅ 早寝早起き
+      ✅ 運動
+      ✅ 健康食
+      ✅ 節約
+      ✅ 投資
+      ✅ 副業
+      ✅ 旅行
+    ` 
+    expect(isInvestmentSpam(text)).toBe(false);
+  })
 });
 
 describe("extractEmojis", () => {
