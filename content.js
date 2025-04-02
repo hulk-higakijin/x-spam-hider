@@ -48,6 +48,7 @@ function isInvestmentSpam(text) {
     "万",
     "儲",
     "銘柄",
+    // "パチンコ",
   ];
   const gratitudeKeywords = [
     "感謝",
@@ -58,6 +59,7 @@ function isInvestmentSpam(text) {
     "おすすめ",
     "オススメ",
     "お勧め",
+    // "お薦め",
     "転機",
     "おかげ",
     "お陰",
@@ -67,7 +69,6 @@ function isInvestmentSpam(text) {
     "見識",
     "識見",
   ];
-  const suspiciousEmojis = ["🎈", "🔥", "🧡", "💚", "📈", "🎉"];
 
   let matchScore = 0;
 
@@ -81,10 +82,7 @@ function isInvestmentSpam(text) {
   const gratitudeCount = gratitudeKeywords.filter((word) =>
     text.includes(word)
   ).length;
-  const emojiCount = suspiciousEmojis.filter((emoji) =>
-    text.includes(emoji)
-  ).length;
-
+  const emojiCount = extractEmojis(text).length;
   // スコア計算
   matchScore += celebrityCount * 2;
   matchScore += moneyPattern.test(text) ? 1 : 0;
