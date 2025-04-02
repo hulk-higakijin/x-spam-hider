@@ -48,7 +48,8 @@ function isInvestmentSpam(text) {
     "万",
     "儲",
     "銘柄",
-    // "パチンコ",
+    "パチンコ",
+    "W W", // 不自然な草
   ];
   const gratitudeKeywords = [
     "感謝",
@@ -59,7 +60,7 @@ function isInvestmentSpam(text) {
     "おすすめ",
     "オススメ",
     "お勧め",
-    // "お薦め",
+    "お薦め",
     "転機",
     "おかげ",
     "お陰",
@@ -111,7 +112,15 @@ if (typeof window !== "undefined") {
   const observer = new MutationObserver(() => {
     const replies = document.querySelectorAll('[data-testid="tweetText"]');
     replies.forEach((reply) => {
-      const text = reply.textContent || "";
+      const text = Array.from(reply.childNodes)
+        .map((node) => {
+          if (node.nodeName === "IMG") {
+            return node.alt || "";
+          } else {
+            return node.textContent;
+          }
+        })
+        .join("");
       if (isInvestmentSpam(text)) {
         const tweet = reply.closest('[data-testid="cellInnerDiv"]');
         if (tweet) {
